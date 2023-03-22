@@ -11,9 +11,9 @@ public class EjeX extends JPanel{
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setFont(new Font("Arial", Font.BOLD, 12));
+        g.setFont(new Font("Arial", Font.BOLD, 10));
         for(int i=0; i<tam; i++) {
-            g.drawString(i + "", i*20 + 45, 20);
+            g.drawString(i + "", i*Constants.GRID_SCALE + 45, 20);
         }
     }
 }

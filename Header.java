@@ -8,10 +8,16 @@ import java.awt.*;
  * @version (a version number or a date)
  */
 public class Header extends JPanel{
+    private Title title;
     public Header (Controls controls, String title) {
         setLayout(new GridLayout(2, 1));
-        add(new Title(title));
+        this.title = new Title(title);
+        add(this.title);
         add(controls);
         setPreferredSize(new Dimension(0, 70));
     }
+    
+    public void setTitleAlgorithm (String text) {
+        title.setTitle(text);
+    } 
 }

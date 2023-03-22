@@ -5,9 +5,9 @@ import java.util.Stack;
 
 public class Plano extends JPanel
 {
-    final int LY = 20;
-    final int LX = 20;
-    final int GRID_SCALE = 20;
+    final int LY = Constants.LY;
+    final int LX = Constants.LX;
+    final int GRID_SCALE = Constants.GRID_SCALE;
     private ArrayList<Point> points;
     private Stack<Pixel> pixeles;
     private int xI, yI, xF, yF;
@@ -79,8 +79,8 @@ public class Plano extends JPanel
     }
     
     public void paintGrilla(Graphics g) {
-        for (int i = 0; i < LY; i++) {
-            for (int j = 0; j < LX; j++) {
+        for (int i = 0; i < LX; i++) {
+            for (int j = 0; j < LY; j++) {
                 g.drawRect(i * GRID_SCALE, j * GRID_SCALE, GRID_SCALE, GRID_SCALE);
             }
         }

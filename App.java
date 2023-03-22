@@ -9,12 +9,13 @@ import java.util.ArrayList;
  * @version (a version number or a date)
  */
 public class App extends JFrame {
-    private final int LY = 20;
-    private final int LX = 20;
+    private final int LY = Constants.LY;
+    private final int LX = Constants.LX;
     private int xI, yI, xF, yF;
     private Algorithm algorithm;
     private Table tabla;
     private Plano plano;
+    private Header header;
     public App (int xI, int yI, int xF, int yF) {
         super("Algoritmos de la Recta");
         this.xI = xI;
@@ -37,11 +38,11 @@ public class App extends JFrame {
         plano = new Plano(xI, yI, xF, yF, points);
         tabla = new Table(this, "Datos " + algorithm.getTitle(), points, algorithm.getPValues());
         Controls controls = new Controls(plano, tabla);
-        
-        add(new Header(controls, algorithm.getTitle()), BorderLayout.NORTH);
+        header = new Header(controls, algorithm.getTitle());
+        add(header, BorderLayout.NORTH);
         add(plano, BorderLayout.CENTER);
         
-        setBounds(0, 0, 500, 550);
+        setBounds(0, 0, 765, 700);
         setLocationRelativeTo(null);
         setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,6 +67,7 @@ public class App extends JFrame {
             break;
         }
         tabla.setTitleAlgorithm(algorithm.getTitle());
+        header.setTitleAlgorithm(algorithm.getTitle());
         graficar();
         plano.updateUI();
     }
