@@ -32,15 +32,16 @@ public class Controls extends JPanel implements ActionListener{
     }
     
     public void actionPerformed (ActionEvent e) {
-        if (e.getSource().equals(stepMas)) {
+        Object source = e.getSource();
+        if (source.equals(stepMas)) {
             plano.pushPixel();
             tabla.pushRow();
-        } else if (e.getSource().equals(stepMenos)) {
+        } else if (source.equals(stepMenos)) {
             plano.removePixel();
             tabla.removeRow();
-        } else {
+        } else if (source.equals(run)) {
             plano.run();
             tabla.run();
-        }  
+        }
     }
 }

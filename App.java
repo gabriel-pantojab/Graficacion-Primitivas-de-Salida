@@ -18,21 +18,15 @@ public class App extends JFrame {
     private Header header;
     public App (int xI, int yI, int xF, int yF) {
         super("Algoritmos de la Recta");
+        setLayout(new BorderLayout());
         this.xI = xI;
         this.yI = yI;
         this.xF = xF;
         this.yF = yF;
         
-        JPanel panelSouth = new JPanel();
-        panelSouth.setLayout(new GridLayout(2, 1));
-        setLayout(new BorderLayout());
-        
         algorithm = new BasicAlgorithm();
-        
-        add(new EjeY(LY), BorderLayout.WEST);
-        panelSouth.add(new EjeX(LX));
-        panelSouth.add(new ControlsAlgorithm(this));
-        add(panelSouth, BorderLayout.SOUTH);
+
+        add(new ControlsAlgorithm(this), BorderLayout.SOUTH);
         
         ArrayList<Point> points = algorithm.generatePoints(xI, yI, xF, yF);
         plano = new Plano(xI, yI, xF, yF, points);
@@ -41,8 +35,10 @@ public class App extends JFrame {
         header = new Header(controls, algorithm.getTitle());
         add(header, BorderLayout.NORTH);
         add(plano, BorderLayout.CENTER);
+        add(new Border(), BorderLayout.WEST);
+        add(new Border(), BorderLayout.EAST);
         
-        setBounds(0, 0, 765, 700);
+        setBounds(0, 0, 707, 696);
         setLocationRelativeTo(null);
         setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -76,6 +72,6 @@ public class App extends JFrame {
         Algorithm mp = new MiddlePoint();
         Algorithm b = new BasicAlgorithm();
         Algorithm br = new Bresenham();
-        new App(2, 3, 15, 12);
+        new App(-3, -3, 8, 2);
     }
 }

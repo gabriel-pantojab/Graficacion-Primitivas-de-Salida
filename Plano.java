@@ -2,6 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Stack;
+import java.awt.event.ComponentEvent;
 
 public class Plano extends JPanel
 {
@@ -10,10 +11,12 @@ public class Plano extends JPanel
     final int GRID_SCALE = Constants.GRID_SCALE;
     private ArrayList<Point> points;
     private Stack<Pixel> pixeles;
+    private ArrayList<Pixel> pixelesGrilla;
     private int xI, yI, xF, yF;
     private int index;
     
     public Plano(int xI, int yI, int xF, int yF, ArrayList<Point> points) {
+        setLayout(null);
         index = 0;
         this.points = points;//algoritmo
         this.xI = xI;
@@ -21,6 +24,9 @@ public class Plano extends JPanel
         this.xF = xF;
         this.yF = yF;
         pixeles = new Stack<Pixel>();
+        pixelesGrilla = new ArrayList<Pixel>();
+        crearGrilla();
+        setPreferredSize(new Dimension(601, 551));
     }
     
     public void setPoints (ArrayList<Point> points) {
@@ -34,18 +40,23 @@ public class Plano extends JPanel
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         paintGrilla(g);
-        pixeles.forEach((pixel) -> pixel.paint(g));
+        int centroX = getWidth() / 2;
+        int centroY = getHeight() / 2;
+        g.setColor(Color.BLACK);
+        g.drawLine(0, centroY, getWidth(), centroY);
+        g.drawLine(centroX, 0, centroX, getHeight());
+        pixeles.forEach((pixel) -> pixel.paintFill(g));
         paintRealRect(g);
     }
     
     public void paintRealRect(Graphics g) {
+        int centroX = getWidth() / 2;
+        int centroY = getHeight() / 2;
         Graphics2D g2 = (Graphics2D)g;
         g2.setColor(Color.RED);
-        g2.setStroke(new BasicStroke(3));
-        g2.drawLine((xI*GRID_SCALE)+GRID_SCALE/2, 
-                    ((LY - yI - 1)*GRID_SCALE) + GRID_SCALE/2, 
-                    (xF*GRID_SCALE)+GRID_SCALE/2 ,
-                    ((LY - yF - 1)*GRID_SCALE)+GRID_SCALE/2);
+        g2.setStroke(new BasicStroke(2));
+        g2.drawLine(xI*GRID_SCALE + centroX, -yI*GRID_SCALE + centroY,
+                    xF*GRID_SCALE + centroX, -yF*GRID_SCALE + centroY);
     }
     
     public void run () {
@@ -65,7 +76,9 @@ public class Plano extends JPanel
     public void pushPixel () {
         if (index == points.size()) return; 
         Point p = points.get(index);
-        Pixel pixel = new Pixel((int)p.getX(), LY - ((int)p.getY() + 1), GRID_SCALE);
+        int mX = LX / 2;
+        int mY = LY / 2;
+        Pixel pixel = new Pixel((int)p.getX()+mX, -(int)p.getY()+mY, GRID_SCALE);
         pixeles.push(pixel);
         index++;
         repaint();
@@ -78,13 +91,24 @@ public class Plano extends JPanel
         repaint();
     }
     
-    public void paintGrilla(Graphics g) {
+    public void crearGrilla () {
         for (int i = 0; i < LX; i++) {
             for (int j = 0; j < LY; j++) {
-                g.drawRect(i * GRID_SCALE, j * GRID_SCALE, GRID_SCALE, GRID_SCALE);
+                Pixel p = new Pixel(i, j, GRID_SCALE);
+                pixelesGrilla.add(p);
             }
         }
     }
+    
+    public void paintGrilla(Graphics g) {
+        g.setColor(new Color(117, 117, 117));
+        for (int i = 0; i < LX; i++) {
+            for (int j = 0; j < LY; j++) {
+                g.drawRect(i*GRID_SCALE, j*GRID_SCALE,GRID_SCALE, GRID_SCALE);
+            }
+        }
+    }
+
     
     public void showPoints() {
         points.forEach((p) -> {
