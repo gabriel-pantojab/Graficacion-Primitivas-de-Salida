@@ -23,12 +23,12 @@ public class App extends JFrame {
 
     public App () {
         super("Algoritmos de la Recta");
-        setLayout(new BorderLayout());
+        setLayout(new BorderLayout(10,10));
         
         shape = new model.LineShape();
         algorithm = shape.getAlgorithms().get(0);
         
-        header = new Header(algorithm.getTitle());
+        header = new Header(algorithm.getTitle(), shape);
         plane = new Plane();
         crtAnimation = new ControlsAnimation();
         
@@ -51,6 +51,18 @@ public class App extends JFrame {
     
     public void setAlgorithm (model.Algorithm algorithm) {
         this.algorithm = algorithm;
+    }
+    
+    public Plane getPlane () {
+        return plane;
+    }
+    
+    public Header getHeader () {
+        return header;
+    }
+    
+    public ControlsAnimation getCrtAnimation () {
+        return crtAnimation;
     }
     
     public static void main(String[] args) {

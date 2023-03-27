@@ -1,6 +1,7 @@
 package view;
 import javax.swing.*;
 import javax.swing.JComboBox;
+import java.awt.FlowLayout;
 
 
 /**
@@ -13,6 +14,7 @@ public class OptionsAlgorithm extends JPanel {
     private JComboBox optionsShape, optionsAlgorithm;
     
     public OptionsAlgorithm (String[] shapes, String[] algorithms) {
+        setLayout(new FlowLayout(FlowLayout.LEFT, 15, 5));
         optionsShape = new JComboBox();
         optionsAlgorithm = new JComboBox();
         
@@ -30,5 +32,13 @@ public class OptionsAlgorithm extends JPanel {
         for (String a : algorithms) {
             optionsAlgorithm.addItem(a);
         }
+    }
+    
+    public JComboBox getOptionsShape () {
+        return optionsShape;
+    }
+    
+    public JComboBox getOptionsAlgorithm () {
+        return optionsAlgorithm;
     }
 }

@@ -14,9 +14,9 @@ public class ControlsAnimation extends JPanel {
     public ControlsAnimation () {
         setPreferredSize(new Dimension(0, 40));
         
-        next = new JButton("n");
-        back = new JButton("b");
-        run = new JButton("r");
+        next = new JButton("\u27A1");
+        back = new JButton("\u2B05");
+        run = new JButton("\u25B6");
         
         add(back);
         add(next);
