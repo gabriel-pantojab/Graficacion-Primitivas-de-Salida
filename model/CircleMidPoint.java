@@ -9,8 +9,12 @@ import java.awt.Point;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class CircleMidPoint extends MidPoint
+public class CircleMidPoint extends CircleAlgorithm
 {
+    public CircleMidPoint () {
+        super("Middle Point");
+    }
+    
     public ArrayList<Point> generatePoints (int xI, int yI, int xF, int yF) {
         return null;
     }

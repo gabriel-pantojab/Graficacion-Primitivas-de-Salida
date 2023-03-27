@@ -1,4 +1,5 @@
 package model;
+import java.util.ArrayList;
 
 
 /**
@@ -9,5 +10,16 @@ package model;
  */
 public class LineShape extends Shape
 {
+    private ArrayList<LineAlgorithm> algorithms;
+    public LineShape () {
+        super("Algorithms of the Line");
+        algorithms = new ArrayList<LineAlgorithm>();
+        algorithms.add(new LineBasic());
+        algorithms.add(new LineBresenham());
+        algorithms.add(new LineMidPoint());
+    }
     
+    public ArrayList<? extends Algorithm> getAlgorithms () {
+        return algorithms;
+    }
 }

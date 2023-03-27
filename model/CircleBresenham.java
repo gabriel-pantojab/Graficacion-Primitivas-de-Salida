@@ -9,8 +9,12 @@ import java.awt.Point;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class CircleBresenham extends Bresenham
+public class CircleBresenham extends CircleAlgorithm
 {
+    public CircleBresenham () {
+        super("Bresenham");
+    }
+    
     public ArrayList<Point> generatePoints (int xI, int yI, int xF, int yF) {
         return null;
     }
