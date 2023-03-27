@@ -18,11 +18,11 @@ public abstract class Algorithm
         this.title = title;
     }
     
-    protected ArrayList<Integer> getPValues () {
+    public ArrayList<Integer> getPValues () {
         return pValues;
     }
     
-    protected String getTitle () {
+    public String getTitle () {
         return title;
     }
     

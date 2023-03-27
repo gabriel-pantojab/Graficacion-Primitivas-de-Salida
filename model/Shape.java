@@ -6,5 +6,6 @@ public abstract class Shape {
     public Shape (String title) {
         this.title = title;
     }
+    
     public abstract ArrayList<? extends Algorithm> getAlgorithms (); 
 }
