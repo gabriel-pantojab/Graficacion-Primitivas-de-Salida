@@ -9,14 +9,15 @@ import java.util.HashMap;
  * @version (a version number or a date)
  */
 
-public class ShapeMap {
+public class ShapeMap implements OptionMap {
     private HashMap<String, Shape> shapes;
     
     public ShapeMap () {
         shapes = new HashMap<String, Shape>();
+        create();
     }
     
-    private void create () {
+    public void create () {
         shapes.put("Line", new LineShape());
         shapes.put("Circle", new CircleShape());
     }
