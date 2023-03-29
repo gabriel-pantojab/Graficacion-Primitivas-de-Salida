@@ -47,6 +47,7 @@ public class App extends JFrame {
     
     public void setShape (model.Shape shape) {
         this.shape = shape;
+        setTitle(shape.getTitle());
     }
     
     public void setAlgorithm (model.Algorithm algorithm) {
@@ -59,6 +60,10 @@ public class App extends JFrame {
     
     public Header getHeader () {
         return header;
+    }
+    
+    public model.Shape getModelShape () {
+        return shape;
     }
     
     public ControlsAnimation getCrtAnimation () {

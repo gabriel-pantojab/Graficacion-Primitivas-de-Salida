@@ -28,6 +28,7 @@ public class OptionsAlgorithm extends JPanel {
         for (String s : shapes) {
             optionsShape.addItem(s);
         }
+        optionsShape.addItem(new model.LineShape());
         
         for (String a : algorithms) {
             optionsAlgorithm.addItem(a);

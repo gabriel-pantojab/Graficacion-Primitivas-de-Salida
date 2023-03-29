@@ -9,14 +9,15 @@ import javax.swing.JComboBox;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class OptionListener implements ActionListener {
+public class OptionListener implements ItemListener {
     private JComboBox options;
     
     public OptionListener (JComboBox combo) {
         options = combo;
-        options.addActionListener(this);
+        options.addItemListener(this);
     }
     
     @Override
-    public void actionPerformed (ActionEvent e) {}
+    public void itemStateChanged (ItemEvent itemEvent) {
+    }
 }

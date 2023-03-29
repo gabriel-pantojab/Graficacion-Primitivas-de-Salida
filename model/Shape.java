@@ -7,5 +7,9 @@ public abstract class Shape {
         this.title = title;
     }
     
+    public String getTitle () {
+        return title;
+    }
+    
     public abstract ArrayList<? extends Algorithm> getAlgorithms (); 
 }
