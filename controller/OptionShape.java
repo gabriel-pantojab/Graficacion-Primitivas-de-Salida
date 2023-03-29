@@ -9,15 +9,22 @@ import javax.swing.JComboBox;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class OptionListener implements ItemListener {
+public class OptionShape implements ItemListener {
     private JComboBox options;
-    
-    public OptionListener (JComboBox combo) {
+    private model.ShapeMap optMap;
+    public OptionShape (JComboBox combo, model.ShapeMap optMap) {
         options = combo;
+        this.optMap = optMap;
         options.addItemListener(this);
+    }
+    
+    public void action (model.Shape shape) {
+        
     }
     
     @Override
     public void itemStateChanged (ItemEvent itemEvent) {
+        String o = (String)itemEvent.getItem();
+        action((model.Shape)optMap.get(o));
     }
 }

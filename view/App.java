@@ -48,10 +48,13 @@ public class App extends JFrame {
     public void setShape (model.Shape shape) {
         this.shape = shape;
         setTitle(shape.getTitle());
+        header.getOpAlgorithm().setOptionsAlgorithms(header.optionsNameAlgorithms(shape.getAlgorithms()));
+        header.setShape(shape);
     }
     
     public void setAlgorithm (model.Algorithm algorithm) {
         this.algorithm = algorithm;
+        header.setTitleAlgorithm(algorithm.getTitle());
     }
     
     public Plane getPlane () {

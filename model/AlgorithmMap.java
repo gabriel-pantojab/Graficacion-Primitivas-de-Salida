@@ -8,10 +8,11 @@ import java.util.HashMap;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class AlgorithmMap implements OptionMap {
+public class AlgorithmMap {
     private HashMap<String, Algorithm> options;
     private Shape shape;
     public AlgorithmMap (Shape shape) {
+        this.shape = shape;
         options = new HashMap<String, Algorithm>();
         create();
     }
@@ -24,7 +25,7 @@ public class AlgorithmMap implements OptionMap {
         );
     }
     
-    public Algorithm algorithm (String name) {
+    public Object get (String name) {
         return options.get(name);
     }
 }

@@ -9,7 +9,7 @@ import java.util.HashMap;
  * @version (a version number or a date)
  */
 
-public class ShapeMap implements OptionMap {
+public class ShapeMap {
     private HashMap<String, Shape> shapes;
     
     public ShapeMap () {
@@ -22,7 +22,7 @@ public class ShapeMap implements OptionMap {
         shapes.put("Circle", new CircleShape());
     }
     
-    public Shape shape (String name) {
+    public Object get (String name) {
         return shapes.get(name);
     }
 }

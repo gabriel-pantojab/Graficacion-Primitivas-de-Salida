@@ -12,13 +12,15 @@ import java.util.ArrayList;
 public class Header extends JPanel{
     private Title title;
     private OptionsAlgorithm oA;
+    private JPanel containerO;
     private Input input;
     public Header (String textTitle,model.Shape shape) {
         setLayout(new GridLayout(2, 1));
-        JPanel containerO = new JPanel(new GridLayout(1, 2));
+        containerO = new JPanel(new GridLayout(1, 2));
+        //revisar
         String[] s = {"Line", "Circle"};
         
-        oA = new OptionsAlgorithm(s, optionsA(shape.getAlgorithms()));
+        oA = new OptionsAlgorithm(s, optionsNameAlgorithms(shape.getAlgorithms()));
         input = getInput(shape);
         
         containerO.add(oA);
@@ -32,6 +34,13 @@ public class Header extends JPanel{
         setPreferredSize(new Dimension(0, 66));
     }
     
+    public void setShape (model.Shape s) {
+        containerO.remove(1);
+        input = getInput(s);
+        containerO.add(input);
+    }
+    
+    //TODO: revisar :|
     private Input getInput (model.Shape s) {
         Input inp;
         if (s instanceof model.LineShape) {
@@ -42,7 +51,7 @@ public class Header extends JPanel{
         return inp;
     }
     
-    private String[] optionsA (ArrayList<? extends model.Algorithm> list) {
+    public String[] optionsNameAlgorithms (ArrayList<? extends model.Algorithm> list) {
         String[] o = new String[list.size()];
         for (int i=0; i < list.size(); i++) {
             String n = list.get(i).getTitle();
