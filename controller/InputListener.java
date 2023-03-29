@@ -17,9 +17,18 @@ public class InputListener implements DocumentListener {
     
     public InputListener (ArrayList<JTextField> inputs) {
         this.inputs = inputs;
+        addListener();
+    }
+    
+    public void addListener () {
         inputs.forEach((in)->{
             in.getDocument().addDocumentListener(InputListener.this);
         });
+    }
+    
+    public void setInputs (ArrayList<JTextField> inputs) {
+        this.inputs = inputs;
+        addListener();
     }
     
     @Override
@@ -29,7 +38,7 @@ public class InputListener implements DocumentListener {
     
     @Override
     public void insertUpdate(DocumentEvent e) {
-        System.out.println("insert input");
+        inputs.forEach((i)->System.out.println(i.getText()));
     }
     
     @Override
