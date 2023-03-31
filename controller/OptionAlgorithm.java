@@ -11,13 +11,17 @@ public class OptionAlgorithm implements ItemListener {
         options.addItemListener(this);
     }
     
-    public void action (model.Algorithm shape) {
+    public void setAlgorithmMap (model.AlgorithmMap optMap) {
+        this.optMap = optMap;
+    }
+    
+    public void action (model.algorithms.Algorithm shape) {
         
     }
     
     @Override
     public void itemStateChanged (ItemEvent itemEvent) {
         String o = (String)itemEvent.getItem();
-        action((model.Algorithm)optMap.get(o));
+        action((model.algorithms.Algorithm)optMap.get(o));
     }
 }

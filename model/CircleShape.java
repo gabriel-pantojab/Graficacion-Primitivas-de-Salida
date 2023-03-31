@@ -10,16 +10,16 @@ import java.util.ArrayList;
  */
 public class CircleShape extends Shape
 {
-    private ArrayList<CircleAlgorithm> algorithms;
+    private ArrayList<model.algorithms.CircleAlgorithm> algorithms;
     public CircleShape () {
         super("Algorithms of the Circle");
-        algorithms = new ArrayList<CircleAlgorithm>();
-        algorithms.add(new CircleBasic());
-        algorithms.add(new CircleBresenham());
-        algorithms.add(new CircleMidPoint());
+        algorithms = new ArrayList<model.algorithms.CircleAlgorithm>();
+        algorithms.add(new model.algorithms.CircleBasic());
+        algorithms.add(new model.algorithms.CircleBresenham());
+        algorithms.add(new model.algorithms.CircleMidPoint());
     }
     
-    public ArrayList<? extends Algorithm> getAlgorithms () {
+    public ArrayList<? extends model.algorithms.Algorithm> getAlgorithms () {
         return algorithms;
     }
 }

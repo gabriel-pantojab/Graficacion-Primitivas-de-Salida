@@ -14,7 +14,7 @@ public class Plane extends JPanel
     private ArrayList<Point> points;
     private Stack<Pixel> pixeles;
     private ArrayList<Pixel> pixelesGrilla;
-    private int xI, yI, xF, yF;
+    private GraphicsShape graphic;
     private int index;
     
     public Plane () {
@@ -26,14 +26,19 @@ public class Plane extends JPanel
         setPreferredSize(new Dimension(601, 551));
     }
     
-    public void setStartPoint (int x, int y) {
-        xI = x;
-        yI = y;
+    public void clearPoints () {
+        points = new ArrayList<Point>();
+        pixeles = new Stack<Pixel>();
+        index = 0;
+        repaint();
     }
     
-    public void setEndPoint (int x, int y) {
-        xF = x;
-        yF = y;
+    public void setGraphic (GraphicsShape g) {
+        this.graphic = g;
+    }
+    
+    public GraphicsShape getGraphic() {
+        return graphic;
     }
     
     public void setPoints (ArrayList<Point> points) {
@@ -53,17 +58,7 @@ public class Plane extends JPanel
         g.drawLine(0, centroY, getWidth(), centroY);
         g.drawLine(centroX, 0, centroX, getHeight());
         pixeles.forEach((pixel) -> pixel.paintFill(g));
-        paintRealRect(g);
-    }
-    
-    public void paintRealRect(Graphics g) {
-        int centroX = getWidth() / 2;
-        int centroY = getHeight() / 2;
-        Graphics2D g2 = (Graphics2D)g;
-        g2.setColor(Color.RED);
-        g2.setStroke(new BasicStroke(2));
-        g2.drawLine(xI*GRID_SCALE + centroX, -yI*GRID_SCALE + centroY,
-                    xF*GRID_SCALE + centroX, -yF*GRID_SCALE + centroY);
+        if (graphic != null) graphic.paint((Graphics2D)g); 
     }
     
     public void run () {
@@ -72,7 +67,7 @@ public class Plane extends JPanel
                 while (index < points.size()) {
                     pushPixel();
                     try {
-                        Thread.sleep(300);
+                        Thread.sleep(100);
                     } catch (Exception e) {}
                 }
             }  
@@ -85,7 +80,7 @@ public class Plane extends JPanel
         Point p = points.get(index);
         int mX = LX / 2;
         int mY = LY / 2;
-        Pixel pixel = new Pixel((int)p.getX()+mX, -(int)p.getY()+mY, GRID_SCALE);
+        Pixel pixel = new Pixel((int)p.getX()+mX-1, -(int)p.getY()+mY-1, GRID_SCALE);
         pixeles.push(pixel);
         index++;
         repaint();
@@ -115,7 +110,6 @@ public class Plane extends JPanel
             }
         }
     }
-
     
     public void showPoints() {
         points.forEach((p) -> {

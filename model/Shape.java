@@ -11,5 +11,5 @@ public abstract class Shape {
         return title;
     }
     
-    public abstract ArrayList<? extends Algorithm> getAlgorithms (); 
+    public abstract ArrayList<? extends model.algorithms.Algorithm> getAlgorithms (); 
 }

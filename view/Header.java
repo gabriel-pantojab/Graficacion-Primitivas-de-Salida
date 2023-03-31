@@ -51,7 +51,7 @@ public class Header extends JPanel{
         return inp;
     }
     
-    public String[] optionsNameAlgorithms (ArrayList<? extends model.Algorithm> list) {
+    public String[] optionsNameAlgorithms (ArrayList<? extends model.algorithms.Algorithm> list) {
         String[] o = new String[list.size()];
         for (int i=0; i < list.size(); i++) {
             String n = list.get(i).getTitle();
