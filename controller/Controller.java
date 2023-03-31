@@ -16,12 +16,14 @@ public class Controller {
     private OptionShape optionShapeL;
     private OptionAlgorithm optionAlgorithmL;
     private ButtonListener buttonsL;
+    private PlaneListener planeL;
     public Controller (view.App app) {
         this.app = app;
         header = app.getHeader();
         ArrayList<JTextField> inputs = this.app.getHeader().getInput().getInputs();
         inputL = new InputListener(inputs, this.app);
         buttonsL = new ButtonListener(this.app);
+        planeL = new PlaneListener(this.app.getPlane());
         optionShapeL = new OptionShape(this.app.getHeader().getOpAlgorithm().getOptionsShape(), new model.ShapeMap()){
             @Override
             public void action (model.Shape shape) {
