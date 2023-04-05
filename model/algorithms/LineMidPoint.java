@@ -36,7 +36,7 @@ public class LineMidPoint extends LineAlgorithm
         pValues.add(p);
         if (dx > dy) {
             while (x != xF) {
-                x = x + 1;
+                x = x + 2;
                 if (p <= 0) {
                     p = p + incInf;
                 } else {

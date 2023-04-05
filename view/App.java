@@ -46,9 +46,9 @@ public class App extends JFrame {
     }
     
     public void runAlgorithm () {
-        if (plane.getGraphic() instanceof GraphicLine) {
+        if (plane.getGraphicShape() instanceof GraphicLine) {
             model.algorithms.LineAlgorithm a = (model.algorithms.LineAlgorithm)algorithm;
-            GraphicLine gL = (GraphicLine)plane.getGraphic();
+            GraphicLine gL = (GraphicLine)plane.getGraphicShape();
             Point start = gL.startPoint();
             Point end = gL.endPoint();
             int xI = (int)start.getX();
@@ -56,9 +56,9 @@ public class App extends JFrame {
             int xF = (int)end.getX();
             int yF = (int)end.getY();
             plane.setPoints(a.generatePoints(xI, yI, xF, yF));
-        } else if (plane.getGraphic() instanceof GraphicCircle) {
+        } else if (plane.getGraphicShape() instanceof GraphicCircle) {
             model.algorithms.CircleAlgorithm a = (model.algorithms.CircleAlgorithm)algorithm;
-            GraphicCircle gC = (GraphicCircle)plane.getGraphic();
+            GraphicCircle gC = (GraphicCircle)plane.getGraphicShape();
             Point center = gC.center();
             int xC = (int)center.getX();
             int yC = (int)center.getY();

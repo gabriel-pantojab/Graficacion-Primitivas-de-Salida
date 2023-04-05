@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 public class Controller {
     private view.App app;
     private view.Header header;
+    private view.Plane plane;
+    
     private InputListener inputL;
     private OptionShape optionShapeL;
     private OptionAlgorithm optionAlgorithmL;
@@ -19,12 +21,13 @@ public class Controller {
     private PlaneListener planeL;
     public Controller (view.App app) {
         this.app = app;
-        header = app.getHeader();
-        ArrayList<JTextField> inputs = this.app.getHeader().getInput().getInputs();
+        header = this.app.getHeader();
+        plane = this.app.getPlane();
+        ArrayList<JTextField> inputs = header.getInput().getInputs();
         inputL = new InputListener(inputs, this.app);
         buttonsL = new ButtonListener(this.app);
-        planeL = new PlaneListener(this.app.getPlane());
-        optionShapeL = new OptionShape(this.app.getHeader().getOpAlgorithm().getOptionsShape(), new model.ShapeMap()){
+        planeL = new PlaneListener(this.app, plane);
+        optionShapeL = new OptionShape(header.getOpAlgorithm().getOptionsShape(), new model.ShapeMap()){
             @Override
             public void action (model.Shape shape) {
                 updateShape(shape);
@@ -32,7 +35,7 @@ public class Controller {
             }
         };
         
-        optionAlgorithmL = new OptionAlgorithm(this.app.getHeader().getOpAlgorithm().getOptionsAlgorithm(), new model.AlgorithmMap(app.getModelShape())){
+        optionAlgorithmL = new OptionAlgorithm(header.getOpAlgorithm().getOptionsAlgorithm(), new model.AlgorithmMap(app.getModelShape())){
             @Override
             public void action (model.algorithms.Algorithm alg) {
                 updateAlgorithm(alg);
@@ -45,17 +48,19 @@ public class Controller {
         app.setTitle(app.getModelShape().getTitle());
         header.getOpAlgorithm().setOptionsAlgorithms(header.optionsNameAlgorithms(app.getModelShape().getAlgorithms()));
         header.setShape(app.getModelShape());
-        ArrayList<JTextField> inputs = this.app.getHeader().getInput().getInputs();
+        ArrayList<JTextField> inputs = header.getInput().getInputs();
         inputL.setInputs(inputs);
         optionAlgorithmL.setAlgorithmMap(new model.AlgorithmMap(app.getModelShape()));
-        app.getPlane().setGraphic(null);
-        app.getPlane().clearPoints();
+        plane.setGraphic(null);
+        plane.clearPoints();
     }
     
     public void updateAlgorithm (model.algorithms.Algorithm alg) {
         app.setAlgorithm(alg);
         header.setTitleAlgorithm(app.getAlgorithm().getTitle());
-        app.getPlane().clearPoints();
-        if (!inputL.emptyInputs()) app.runAlgorithm();
+        plane.clearPoints();
+        //TODO: volver a revisar
+        //if (!inputL.emptyInputs()) app.runAlgorithm();
+        app.runAlgorithm();
     }
 }
