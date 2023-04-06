@@ -1,4 +1,4 @@
-package model;
+package model.algorithms;
 import java.util.ArrayList;
 import java.awt.Point;
 
@@ -25,6 +25,4 @@ public abstract class Algorithm
     public String getTitle () {
         return title;
     }
-    
-    public abstract ArrayList<Point> generatePoints (int xI, int yI, int xF, int yF);
 }

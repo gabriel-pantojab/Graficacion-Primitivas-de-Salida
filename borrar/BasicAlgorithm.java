@@ -1,20 +1,12 @@
-package model;
+package borrar;
+
 import java.util.ArrayList;
 import java.awt.Point;
 
-
-/**
- * Write a description of class LineBasic here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class LineBasic extends LineAlgorithm
-{
-    public LineBasic () {
+public class BasicAlgorithm extends Algorithm {
+    public BasicAlgorithm () {
         super("Basic Algorithm");
     }
-    
     public ArrayList<Point> generatePoints(int xI, int yI, int xF, int yF) {
         ArrayList<Point> points = new ArrayList<Point>();
         double dy, dx;

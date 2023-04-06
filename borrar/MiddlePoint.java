@@ -1,20 +1,13 @@
-package model;
+package borrar;
+
 import java.util.ArrayList;
 import java.awt.Point;
+import java.util.function.Consumer;
 
-
-/**
- * Write a description of class LineMidPoint here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class LineMidPoint extends LineAlgorithm
-{
-    public LineMidPoint () {
+public class MiddlePoint extends Algorithm{
+    public MiddlePoint () {
         super("Middle Point");
     }
-    
     public ArrayList<Point> generatePoints(int xI, int yI, int xF, int yF) {
         ArrayList<Point> points = new ArrayList<Point>();
         int dx, dy, p, incInf, incSup;

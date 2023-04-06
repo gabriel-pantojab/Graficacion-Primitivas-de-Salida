@@ -1,11 +1,20 @@
+package model.algorithms;
 import java.util.ArrayList;
 import java.awt.Point;
-import java.util.function.Consumer;
 
-public class MiddlePoint extends Algorithm{
-    public MiddlePoint () {
+
+/**
+ * Write a description of class LineMidPoint here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class LineMidPoint extends LineAlgorithm
+{
+    public LineMidPoint () {
         super("Middle Point");
     }
+    
     public ArrayList<Point> generatePoints(int xI, int yI, int xF, int yF) {
         ArrayList<Point> points = new ArrayList<Point>();
         int dx, dy, p, incInf, incSup;

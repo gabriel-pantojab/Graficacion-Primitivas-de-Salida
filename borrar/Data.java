@@ -1,3 +1,5 @@
+package borrar;
+
 import java.awt.Point;
 
 /**

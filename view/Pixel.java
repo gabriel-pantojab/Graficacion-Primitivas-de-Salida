@@ -7,11 +7,23 @@ public class Pixel {
     private int width;
     private int x, y;
     private Color color;
-    public Pixel(int x, int y, int width){
+    public Pixel(int x, int y, int width, Color color){
         this.width = width;
         this.x = x;
         this.y = y;
-        color = Color.BLACK;
+        this.color = color;
+    }
+    
+    public Pixel(int x, int y, int width){
+        this(x, y, width, Color.BLACK);
+    }
+    
+    public int getX () {
+        return x;
+    }
+    
+    public int getY () {
+        return y;
     }
     
     public void setColor (Color color) {

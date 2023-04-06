@@ -22,4 +22,16 @@ public class ControlsAnimation extends JPanel {
         add(next);
         add(run);
     }
+    
+    public JButton next () {
+        return next;
+    }
+    
+    public JButton back () {
+        return back;
+    }
+    
+    public JButton run () {
+        return run;
+    }
 }

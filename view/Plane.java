@@ -10,30 +10,45 @@ public class Plane extends JPanel
 {
     final int LY = Constants.LY;
     final int LX = Constants.LX;
-    final int GRID_SCALE = Constants.GRID_SCALE;
+    int GRID_SCALE = Constants.GRID_SCALE;
     private ArrayList<Point> points;
-    private Stack<Pixel> pixeles;
+    private Stack<Pixel> pixeles, pixelesOrigen;
     private ArrayList<Pixel> pixelesGrilla;
-    private int xI, yI, xF, yF;
+    private GraphicsShape graphic;
     private int index;
     
     public Plane () {
         setLayout(null);
         index = 0;
         pixeles = new Stack<Pixel>();
+        pixelesOrigen = new Stack<Pixel>();
         pixelesGrilla = new ArrayList<Pixel>();
         crearGrilla();
-        setPreferredSize(new Dimension(601, 551));
+        setPreferredSize(new Dimension(GRID_SCALE*LX+1, GRID_SCALE*LY+1));
+        setBackground(new Color(250, 250, 250));
     }
     
-    public void setStartPoint (int x, int y) {
-        xI = x;
-        yI = y;
+    public void zoomMas () {
+        GRID_SCALE *= 2;
     }
     
-    public void setEndPoint (int x, int y) {
-        xF = x;
-        yF = y;
+    public void zoomMenos () {
+        GRID_SCALE /= 2;
+    }
+    
+    public void clearPoints () {
+        points = new ArrayList<Point>();
+        pixeles = new Stack<Pixel>();
+        index = 0;
+        repaint();
+    }
+    
+    public void setGraphic (GraphicsShape g) {
+        this.graphic = g;
+    }
+    
+    public GraphicsShape getGraphicShape() {
+        return graphic;
     }
     
     public void setPoints (ArrayList<Point> points) {
@@ -49,21 +64,13 @@ public class Plane extends JPanel
         paintGrilla(g);
         int centroX = getWidth() / 2;
         int centroY = getHeight() / 2;
+        
         g.setColor(Color.BLACK);
         g.drawLine(0, centroY, getWidth(), centroY);
         g.drawLine(centroX, 0, centroX, getHeight());
         pixeles.forEach((pixel) -> pixel.paintFill(g));
-        paintRealRect(g);
-    }
-    
-    public void paintRealRect(Graphics g) {
-        int centroX = getWidth() / 2;
-        int centroY = getHeight() / 2;
-        Graphics2D g2 = (Graphics2D)g;
-        g2.setColor(Color.RED);
-        g2.setStroke(new BasicStroke(2));
-        g2.drawLine(xI*GRID_SCALE + centroX, -yI*GRID_SCALE + centroY,
-                    xF*GRID_SCALE + centroX, -yF*GRID_SCALE + centroY);
+        pixelesOrigen.forEach((pixel) -> pixel.paintFill(g));
+        if (graphic != null) graphic.paint((Graphics2D)g);
     }
     
     public void run () {
@@ -72,7 +79,7 @@ public class Plane extends JPanel
                 while (index < points.size()) {
                     pushPixel();
                     try {
-                        Thread.sleep(300);
+                        Thread.sleep(100);
                     } catch (Exception e) {}
                 }
             }  
@@ -115,7 +122,52 @@ public class Plane extends JPanel
             }
         }
     }
-
+    private void paintNumbersPlane (Graphics g) {
+        g.setColor(Color.RED);
+        g.setFont(new Font("arial", Font.BOLD, 8));
+        for (int i = -LX/2; i <= LX/2-1; i++) {
+            if (i >= 0 && i <10)
+                g.drawString(Integer.toString(i), i*GRID_SCALE + (LX/2-1)*GRID_SCALE+GRID_SCALE/2, LY/2*GRID_SCALE);
+            else g.drawString(Integer.toString(i), i*GRID_SCALE + (LX/2-1)*GRID_SCALE, LY/2*GRID_SCALE);
+        }
+        for (int j = -LY/2; j <= LY/2-1; j++) {
+            if (j != 0) {
+                g.drawString(Integer.toString(-j), (LX/2-1)*GRID_SCALE, j*GRID_SCALE + (LY/2-1)*GRID_SCALE + GRID_SCALE);
+            }
+        }
+    }
+    
+    public void paintPixel (int x, int y) {
+        Graphics g = getGraphics();
+        int mX = LX / 2;
+        int mY = LY / 2;
+        g.setColor(Color.GREEN);
+        g.drawRect(x+mX-1, -y+mY-1, GRID_SCALE, GRID_SCALE);
+    }
+    
+    public void pushPixelOrigen (int x, int y) {
+        int mX = LX / 2;
+        int mY = LY / 2;
+        pixelesOrigen.push(new Pixel(x+mX, -y+mY, GRID_SCALE, Color.RED));
+        repaint();
+    }
+    
+    public void popPixelOrigen () {
+        pixelesOrigen.pop();
+        repaint();
+    }
+    
+    public Pixel peekPixelOrigen () {
+        return pixelesOrigen.peek();
+    }
+    
+    public void clearPixelesOrigen () {
+        pixelesOrigen = new Stack<Pixel>();
+    }
+    
+    public int sizePixelesOrigen () {
+        return pixelesOrigen.size();
+    }
     
     public void showPoints() {
         points.forEach((p) -> {

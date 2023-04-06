@@ -34,11 +34,22 @@ public class OptionsAlgorithm extends JPanel {
         }
     }
     
+    private void createItemsAlgorithms (String[] algorithms) {
+        for (String a : algorithms) {
+            optionsAlgorithm.addItem(a);
+        }
+    }
+    
     public JComboBox getOptionsShape () {
         return optionsShape;
     }
     
     public JComboBox getOptionsAlgorithm () {
         return optionsAlgorithm;
+    }
+    
+    public void setOptionsAlgorithms (String[] algorithms) {
+        optionsAlgorithm.removeAllItems();
+        createItemsAlgorithms(algorithms);
     }
 }
