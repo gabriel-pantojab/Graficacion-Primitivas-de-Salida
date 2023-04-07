@@ -1,7 +1,16 @@
+package model.algorithms;
 import java.util.ArrayList;
 import java.awt.Point;
 
-public abstract class Algorithm {
+
+/**
+ * Write a description of class Algorithm here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public abstract class Algorithm
+{
     protected ArrayList<Integer> pValues;
     protected String title;
     public Algorithm (String title) {
@@ -9,13 +18,11 @@ public abstract class Algorithm {
         this.title = title;
     }
     
-    protected ArrayList<Integer> getPValues () {
+    public ArrayList<Integer> getPValues () {
         return pValues;
     }
     
-    protected String getTitle () {
+    public String getTitle () {
         return title;
     }
-    
-    public abstract ArrayList<Point> generatePoints(int xI, int yI, int xF, int yF);
 }

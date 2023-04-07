@@ -1,18 +1,22 @@
+package est;
+
 import java.util.ArrayList;
 import java.awt.geom.Point2D;
 import java.awt.Point;
 
 public class Estadistica {   
-    public long getTime (Algorithm algo, int xI, int yI, int xF, int yF) {
+    public long getTime (model.algorithms.Algorithm algo, int xI, int yI, int xF, int yF) {
         long inicio, fin;
         inicio = System.nanoTime();
-        algo.generatePoints(xI, yI, xF, yF);
+        model.algorithms.LineAlgorithm al = (model.algorithms.LineAlgorithm)algo;
+        al.generatePoints(xI, yI, xF, yF);
+        al.generatePoints(xI, yI, xF, yF);
         fin = System.nanoTime();
         return fin - inicio;
     }
     
-    public ArrayList<Double> getErrors (int xI, int yI, int xF, int yF, Algorithm algorithm) {
-        ArrayList<Point> pointsAlgorithm = algorithm.generatePoints(xI, yI, xF, yF);
+    public ArrayList<Double> getErrors (int xI, int yI, int xF, int yF, model.algorithms.Algorithm algorithm) {
+        ArrayList<Point> pointsAlgorithm = ((model.algorithms.LineAlgorithm)algorithm).generatePoints(xI, yI, xF, yF);
         ArrayList<Point2D.Double> pointsReal = getPointsReal(xI, yI, xF, yF);
         ArrayList<Double> errors = new ArrayList<Double>();
         for (int i = 0; i < pointsReal.size(); i++) {

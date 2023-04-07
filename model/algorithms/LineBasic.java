@@ -1,10 +1,20 @@
+package model.algorithms;
 import java.util.ArrayList;
 import java.awt.Point;
 
-public class BasicAlgorithm extends Algorithm {
-    public BasicAlgorithm () {
+
+/**
+ * Write a description of class LineBasic here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class LineBasic extends LineAlgorithm
+{
+    public LineBasic () {
         super("Basic Algorithm");
     }
+    
     public ArrayList<Point> generatePoints(int xI, int yI, int xF, int yF) {
         ArrayList<Point> points = new ArrayList<Point>();
         double dy, dx;

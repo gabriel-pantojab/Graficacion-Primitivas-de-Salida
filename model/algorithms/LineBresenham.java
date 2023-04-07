@@ -1,10 +1,20 @@
+package model.algorithms;
 import java.util.ArrayList;
 import java.awt.Point;
 
-public class Bresenham extends Algorithm {
-    public Bresenham () {
+
+/**
+ * Write a description of class LineBresenham here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class LineBresenham extends LineAlgorithm
+{
+    public LineBresenham () {
         super("Bresenham");
     }
+    
     public ArrayList<Point> generatePoints(int xI, int yI, int xF, int yF) {
         ArrayList<Point> points = new ArrayList<Point>();
         int x, y, dx, dy, p, incE, incNE, stepx, stepy;

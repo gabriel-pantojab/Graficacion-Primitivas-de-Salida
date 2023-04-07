@@ -1,3 +1,5 @@
+package est;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.util.ArrayList;
@@ -11,9 +13,9 @@ import java.util.ArrayList;
 public class TablaEstadisticas
 {
     public static void main (String args[]) {
-        Algorithm mp = new MiddlePoint();
-        Algorithm ba = new BasicAlgorithm();
-        Algorithm br = new Bresenham();
+        model.algorithms.Algorithm mp = new model.algorithms.LineMidPoint();
+        model.algorithms.Algorithm ba = new model.algorithms.LineBasic();
+        model.algorithms.Algorithm br = new model.algorithms.LineBresenham();
         Estadistica et = new Estadistica();
         Data data = new Data();
         
@@ -53,9 +55,9 @@ public class TablaEstadisticas
     }
     
     public static void presicion () {
-        Algorithm mp = new MiddlePoint();
-        Algorithm ba = new BasicAlgorithm();
-        Algorithm br = new Bresenham();
+        model.algorithms.Algorithm mp = new model.algorithms.LineMidPoint();
+        model.algorithms.Algorithm ba = new model.algorithms.LineBasic();
+        model.algorithms.Algorithm br = new model.algorithms.LineBresenham();
         Estadistica et = new Estadistica();
         JFrame f = new JFrame();
         
@@ -89,9 +91,9 @@ public class TablaEstadisticas
     }
     
     static void precisionPromedio () {
-        Algorithm mp = new MiddlePoint();
-        Algorithm ba = new BasicAlgorithm();
-        Algorithm br = new Bresenham();
+        model.algorithms.Algorithm mp = new model.algorithms.LineMidPoint();
+        model.algorithms.Algorithm ba = new model.algorithms.LineBasic();
+        model.algorithms.Algorithm br = new model.algorithms.LineBresenham();
         Estadistica et = new Estadistica();
         Data data = new Data();
         
