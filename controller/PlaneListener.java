@@ -36,18 +36,7 @@ public class PlaneListener extends MouseAdapter {
                 plane.popPixelOrigen();
                 plane.pushPixelOrigen(x, y);
             } else  plane.pushPixelOrigen(x, y);
-            if (app.getModelShape() instanceof model.LineShape) {
-                int xI = (int)start.getX();
-                int yI = (int)start.getY();
-                int xF = (int)end.getX();
-                int yF = (int)end.getY();
-                plane.setGraphic(new view.GraphicLine(xc, yc, Color.RED, xI, yI, xF, yF));
-            } else if (app.getModelShape() instanceof model.CircleShape) {
-                int xC = (int)start.getX();
-                int yC = (int)start.getY();
-                int radio = (int)start.distance(end);
-                plane.setGraphic(new view.GraphicCircle(xc, yc, Color.RED, xC, yC, radio));
-            }
+            updateGraphicShape ();
             plane.repaint();
         }
     }
@@ -69,22 +58,28 @@ public class PlaneListener extends MouseAdapter {
             pS = true;
         }
         if (start != null && end != null) { 
-            if (app.getModelShape() instanceof model.LineShape) {
-                int xI = (int)start.getX();
-                int yI = (int)start.getY();
-                int xF = (int)end.getX();
-                int yF = (int)end.getY();
-                plane.setGraphic(new view.GraphicLine(xc, yc, Color.RED, xI, yI, xF, yF));
-            } else if (app.getModelShape() instanceof model.CircleShape) {
-                int xC = (int)start.getX();
-                int yC = (int)start.getY();
-                int radio = (int)start.distance(end);
-                plane.setGraphic(new view.GraphicCircle(xc, yc, Color.RED, xC, yC, radio));
-            }
+            updateGraphicShape ();
             start = end = null;
             plane.clearPixelesOrigen();
             app.runAlgorithm();
             plane.repaint();
+        }
+    }
+    
+    private void updateGraphicShape () {
+        int xc = plane.getWidth() / 2;
+        int yc = plane.getHeight() / 2;
+        if (app.getModelShape() instanceof model.LineShape) {
+            int xI = (int)start.getX();
+            int yI = (int)start.getY();
+            int xF = (int)end.getX();
+            int yF = (int)end.getY();
+            plane.setGraphic(new view.GraphicLine(xc, yc, Color.RED, xI, yI, xF, yF));
+        } else if (app.getModelShape() instanceof model.CircleShape) {
+            int xC = (int)start.getX();
+            int yC = (int)start.getY();
+            int radio = (int)start.distance(end);
+            plane.setGraphic(new view.GraphicCircle(xc, yc, Color.RED, xC, yC, radio));
         }
     }
 }
