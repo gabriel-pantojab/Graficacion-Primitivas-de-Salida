@@ -2,7 +2,7 @@ package view;
 
 
 public interface Constants {
-    int LY = 53;//debe ser impar
-    int LX = 115;//debe ser impar
-    int GRID_SCALE = 10;
+    int LY = 69;//debe ser impar
+    int LX = 175;//debe ser impar
+    int GRID_SCALE = 7;
 }

@@ -28,14 +28,6 @@ public class Plane extends JPanel
         setBackground(new Color(250, 250, 250));
     }
     
-    public void zoomMas () {
-        GRID_SCALE *= 2;
-    }
-    
-    public void zoomMenos () {
-        GRID_SCALE /= 2;
-    }
-    
     public void clearPoints () {
         points = new ArrayList<Point>();
         pixeles = new Stack<Pixel>();
@@ -79,7 +71,7 @@ public class Plane extends JPanel
                 while (index < points.size()) {
                     pushPixel();
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(0);
                     } catch (Exception e) {}
                 }
             }  
@@ -119,20 +111,6 @@ public class Plane extends JPanel
         for (int i = 0; i < LX; i++) {
             for (int j = 0; j < LY; j++) {
                 g.drawRect(i*GRID_SCALE, j*GRID_SCALE,GRID_SCALE, GRID_SCALE);
-            }
-        }
-    }
-    private void paintNumbersPlane (Graphics g) {
-        g.setColor(Color.RED);
-        g.setFont(new Font("arial", Font.BOLD, 8));
-        for (int i = -LX/2; i <= LX/2-1; i++) {
-            if (i >= 0 && i <10)
-                g.drawString(Integer.toString(i), i*GRID_SCALE + (LX/2-1)*GRID_SCALE+GRID_SCALE/2, LY/2*GRID_SCALE);
-            else g.drawString(Integer.toString(i), i*GRID_SCALE + (LX/2-1)*GRID_SCALE, LY/2*GRID_SCALE);
-        }
-        for (int j = -LY/2; j <= LY/2-1; j++) {
-            if (j != 0) {
-                g.drawString(Integer.toString(-j), (LX/2-1)*GRID_SCALE, j*GRID_SCALE + (LY/2-1)*GRID_SCALE + GRID_SCALE);
             }
         }
     }
