@@ -8,9 +8,9 @@ import java.awt.Point;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class SquareInput implements InputShape {
+public class SquareInput extends InputShape {
     private Point topLeft, bottomRight;
     public boolean complete () {
-        return true;
+        return inputs.size() == 2;
     }
 }

@@ -8,9 +8,9 @@ import java.awt.Point;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class LineInput implements InputShape {
+public class LineInput extends InputShape {
     private Point start, end;
     public boolean complete () {
-        return true;
+        return inputs.size() == 2;
     }
 }

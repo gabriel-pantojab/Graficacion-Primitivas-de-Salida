@@ -8,9 +8,9 @@ import java.awt.Point;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class TriangleInput implements InputShape {
+public class TriangleInput extends InputShape {
     private Point vertexA, vertexB, vertexC;
     public boolean complete () {
-        return true;
+        return inputs.size() == 3;
     }
 }
