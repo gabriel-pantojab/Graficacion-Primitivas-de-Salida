@@ -16,6 +16,16 @@ public class LineMidPoint extends LineAlgorithm
     }
     
     public ArrayList<Point> generatePoints(int xI, int yI, int xF, int yF) {
+        if(xI > xF) {
+            int temp = xF;
+            xF = xI;
+            xI = temp;
+        }
+        if(yI > yF) {
+            int temp = yF;
+            yF = yI;
+            yI = temp;
+        }
         ArrayList<Point> points = new ArrayList<Point>();
         int dx, dy, p, incInf, incSup;
         dx = xF - xI;

@@ -15,17 +15,15 @@ public class Plane extends JPanel implements LayoutManager
     private Stack<Pixel> pixeles, pixelesOrigen;
     private ArrayList<Pixel> pixelesGrilla;
     private GraphicsShape graphic;
-    private int index;
+    private int indexPixel;
     
     public Plane () {
         setLayout(this);
-        index = 0;
+        indexPixel = 0;
         pixeles = new Stack<Pixel>();
         pixelesOrigen = new Stack<Pixel>();
         pixelesGrilla = new ArrayList<Pixel>();
         crearGrilla();
-        view.shapes.Line line = new view.shapes.Line(new Point(1, 1), new Point(5, 5));
-        //add(line);
         setPreferredSize(new Dimension(GRID_SCALE*LX+1, GRID_SCALE*LY+1));
         setBackground(new Color(250, 250, 250));
     }
@@ -33,7 +31,7 @@ public class Plane extends JPanel implements LayoutManager
     public void clearPoints () {
         points = new ArrayList<Point>();
         pixeles = new Stack<Pixel>();
-        index = 0;
+        indexPixel = 0;
         repaint();
     }
     
@@ -46,7 +44,7 @@ public class Plane extends JPanel implements LayoutManager
     }
     
     public void setPoints (ArrayList<Point> points) {
-        index = 0;
+        indexPixel = 0;
         this.points = points;
         pixeles.clear();
         repaint();
@@ -70,7 +68,7 @@ public class Plane extends JPanel implements LayoutManager
     public void run () {
         Thread h = new Thread() {
             public void run () {
-                while (index < points.size()) {
+                while (indexPixel < points.size()) {
                     pushPixel();
                     try {
                         Thread.sleep(0);
@@ -82,20 +80,20 @@ public class Plane extends JPanel implements LayoutManager
     }
     
     public void pushPixel () {
-        if (index == points.size()) return; 
-        Point p = points.get(index);
+        if (indexPixel == points.size()) return; 
+        Point p = points.get(indexPixel);
         int mX = LX / 2;
         int mY = LY / 2;
         Pixel pixel = new Pixel((int)p.getX()+mX, -(int)p.getY()+mY, GRID_SCALE);
         pixeles.push(pixel);
-        index++;
+        indexPixel++;
         repaint();
     }
     
     public void removePixel () {
-        if (index == 0) return;
+        if (indexPixel == 0) return;
         pixeles.pop();
-        index--;
+        indexPixel--;
         repaint();
     }
     
