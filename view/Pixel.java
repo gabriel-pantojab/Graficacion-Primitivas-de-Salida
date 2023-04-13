@@ -11,15 +11,25 @@ public class Pixel extends JComponent implements MouseListener{
     private int x, y;
     private Color color;
     private boolean isSelected;
+    private view.shapes.Shape parentShape;
     public Pixel(int x, int y, int width, Color color){
         this.width = width;
         this.x = x;
         this.y = y;
         this.color = color;
         isSelected = false;
+        parentShape = null;
         setBounds(x*width, y*width, width, width);
         addMouseListener(this);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }
+    
+    public void setParentShape (view.shapes.Shape pS) {
+        parentShape = pS;
+    }
+    
+    public view.shapes.Shape getParentShape () {
+        return parentShape;
     }
     
     public Pixel(int x, int y, int width){
@@ -43,6 +53,16 @@ public class Pixel extends JComponent implements MouseListener{
         g.fillRect(x*width, y*width, width, width);
     }
     
+    public void select () {
+        isSelected = true;
+        repaint();
+    }
+    
+    public void unselect () {
+        isSelected = false;
+        repaint();
+    }
+    
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -59,9 +79,7 @@ public class Pixel extends JComponent implements MouseListener{
     
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println(getParent());
-        isSelected = !isSelected;
-        repaint();
+        if(parentShape != null) parentShape.select();
     }
 
     @Override
