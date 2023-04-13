@@ -59,10 +59,22 @@ public class PlaneListener extends MouseAdapter {
         }
         if (start != null && end != null) { 
             updateGraphicShape ();
-            start = end = null;
+            updateUIShape();
             plane.clearPixelesOrigen();
             app.runAlgorithm();
             plane.repaint();
+            start = end = null;
+        }
+    }
+    
+    private void updateUIShape () {
+        if (app.getModelShape() instanceof model.LineShape) {
+            plane.add(new view.shapes.Line(start, end));
+            plane.updateUI();
+        }else {
+            int radio = (int)start.distance(end);
+            plane.add(new view.shapes.Circle(start, radio));
+            plane.updateUI();
         }
     }
     

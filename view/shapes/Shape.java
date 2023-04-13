@@ -19,12 +19,6 @@ public abstract class Shape extends JComponent {
     pixels = new ArrayList<Pixel>();
   }
 
-  @Override
-  public void paint(Graphics g) {
-    super.paint(g);
-    pixels.forEach((pixel) -> pixel.paintFill(g));
-  }
-
   public ArrayList<Pixel> getPixels() {
     return pixels;
   }
