@@ -1,7 +1,7 @@
 package controller;
 import java.awt.event.*;
 import java.awt.*;
-
+import view.GraphicsShape;
 
 /**
  * Write a description of class PlaneListener here.
@@ -12,12 +12,10 @@ import java.awt.*;
 public class PlaneListener extends MouseAdapter {
     private view.Plane plane;
     private view.App app;
-    private Point start, end;
-    private boolean pS;
+    private InputShape inputShape;
     public PlaneListener (view.App app, view.Plane plane) {
         this.app = app;
         this.plane = plane;
-        pS = true;
         this.plane.addMouseListener(this);
         this.plane.addMouseMotionListener(this);
     }
@@ -28,15 +26,17 @@ public class PlaneListener extends MouseAdapter {
         int x = e.getX()/view.Constants.GRID_SCALE-view.Constants.LX/2;
         int y = -(e.getY()/view.Constants.GRID_SCALE-view.Constants.LY/2);
         
-        if (start != null) {
+        if (inputShape != null && inputShape.readyDraw()) {
             view.Pixel topPixel = plane.peekPixelOrigen();
-            end = new Point(x, y);
             if (plane.sizePixelesOrigen() > 1 &&
                 (topPixel.getX() != x || topPixel.getY() != y)) {
                 plane.popPixelOrigen();
-                plane.pushPixelOrigen(x, y);
-            } else  plane.pushPixelOrigen(x, y);
-            updateGraphicShape ();
+            }
+            plane.pushPixelOrigen(x, y);
+            if(inputShape.size() > 1) inputShape.popInput();
+            inputShape.addInput(new Point(x, y));
+            inputShape.setInputs();
+            updateGraphicShape();
             plane.repaint();
         }
     }
@@ -46,52 +46,45 @@ public class PlaneListener extends MouseAdapter {
         int yc = plane.getHeight() / 2;
         int x = (e.getX()/view.Constants.GRID_SCALE) - (view.Constants.LX/2);
         int y = -(e.getY()/view.Constants.GRID_SCALE-view.Constants.LY/2);
-        System.out.println(x+" "+y);
-        if (pS) {
-            start = new Point(x, y);
-            plane.pushPixelOrigen(x, y);
-            plane.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            pS = false;
-        }else {
-            end = new Point(x, y);
-            plane.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            pS = true;
+        //System.out.println(x+" "+y);
+        if(inputShape == null) {
+            if (app.getModelShape() instanceof model.LineShape) {
+                inputShape = new LineInput();
+            } else if (app.getModelShape() instanceof model.CircleShape) {
+                inputShape = new CircleInput();
+            } 
         }
-        if (start != null && end != null) { 
-            updateGraphicShape ();
+        inputShape.addInput(new Point(x, y));
+        if(inputShape.readyDraw()) {
+            Point p = inputShape.firtsInput();
+            plane.pushPixelOrigen((int)p.getX(), (int)p.getY());
+            plane.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        }else {plane.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));}
+        if (inputShape.complete()) {
+            inputShape.setInputs();
+            updateGraphicShape();
             updateUIShape();
             plane.clearPixelesOrigen();
+            inputShape.clearInputs();
             app.runAlgorithm();
             plane.repaint();
-            start = end = null;
+            inputShape = null;
         }
     }
     
     private void updateUIShape () {
-        if (app.getModelShape() instanceof model.LineShape) {
-            plane.add(new view.shapes.Line(start, end));
-            plane.updateUI();
-        }else {
-            int radio = (int)start.distance(end);
-            plane.add(new view.shapes.Circle(start, radio));
-            plane.updateUI();
-        }
+        plane.add(inputShape.getShape());
+        plane.updateUI();
     }
     
     private void updateGraphicShape () {
         int xc = plane.getWidth() / 2;
         int yc = plane.getHeight() / 2;
-        if (app.getModelShape() instanceof model.LineShape) {
-            int xI = (int)start.getX();
-            int yI = (int)start.getY();
-            int xF = (int)end.getX();
-            int yF = (int)end.getY();
-            plane.setGraphic(new view.GraphicLine(xc, yc, Color.RED, xI, yI, xF, yF));
-        } else if (app.getModelShape() instanceof model.CircleShape) {
-            int xC = (int)start.getX();
-            int yC = (int)start.getY();
-            int radio = (int)start.distance(end);
-            plane.setGraphic(new view.GraphicCircle(xc, yc, Color.RED, xC, yC, radio));
+        
+        GraphicsShape g = inputShape.getGraphicsShape();
+        if (g!=null) {
+            g.setCenter(xc, yc);
+            plane.setGraphic(g);
         }
     }
 }
