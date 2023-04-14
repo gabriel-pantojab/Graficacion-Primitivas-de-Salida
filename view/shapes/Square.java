@@ -14,15 +14,21 @@ import model.algorithms.SquareAlgorithm;
 public class Square extends Shape{
     private Point topLeftVertex, bottomRightVertex;
     public Square(Point topLV, Point bottomRV, SquareAlgorithm algorithm) {
-        topLeftVertex = topLV;
-        bottomRV = bottomRV;
+        this.topLeftVertex = topLV;
+        this.bottomRightVertex = bottomRV;
         this.algorithm = algorithm;
-        ArrayList<Point> points = algorithm.generatePoints((int) topLeftVertex.getX(), (int) topLeftVertex.getY(), (int) bottomRightVertex.getX(),
+        pointsBorder = algorithm.generatePoints((int) topLeftVertex.getX(), (int) topLeftVertex.getY(), (int) bottomRightVertex.getX(),
         (int) bottomRightVertex.getY());
-        generatePixels(points);
+        generatePixels();
     }
     
     public Square(Point topLV, Point bottomRV) {
         this(topLV, bottomRV, new SquareMidPoint());
+    }
+    
+    public void fill () {
+        int x = (int)topLeftVertex.getX() + (int)(bottomRightVertex.getX() - topLeftVertex.getX()) / 2;
+        int y = (int)topLeftVertex.getY() - (int)(topLeftVertex.getY() - bottomRightVertex.getY()) / 2;
+        cuatro_vecinos(x, y);
     }
 }

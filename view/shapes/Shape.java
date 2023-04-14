@@ -12,30 +12,57 @@ import view.Pixel;
 
 
 public abstract class Shape extends JComponent {
-    protected ArrayList<Pixel> pixels;
+    protected ArrayList<Pixel> pixelsBorder, pixelsFill;
+    protected ArrayList<Point> pointsBorder, pointsFill;
     protected Algorithm algorithm;
 
     public Shape() {
-        pixels = new ArrayList<Pixel>();
+        pointsBorder = new ArrayList<Point>();
+        pointsFill = new ArrayList<Point>();
+        pixelsBorder = new ArrayList<Pixel>();
+        pixelsFill = new ArrayList<Pixel>();
     }
     
-    public ArrayList<Pixel> getPixels() {
-        return pixels;
+    public ArrayList<Pixel> getPixelsBorder() {
+        return pixelsBorder;
     }
     
-    protected void generatePixels(ArrayList<Point> points) {
-        points.forEach((point)->{
+    public ArrayList<Pixel> getPixelsFill() {
+        return pixelsFill;
+    }
+    
+    public abstract void fill ();
+    
+    protected void cuatro_vecinos(int x, int y) {
+        Point p = new Point(x, y);
+        if (!pointsBorder.contains(p) && !pointsFill.contains(p)) {
+            pointsFill.add(p);
+            int mX = Constants.LX / 2;
+            int mY = Constants.LY / 2;
+            Pixel pixel = new Pixel(x+mX, -y+mY, Constants.GRID_SCALE);
+            pixelsFill.add(pixel);
+            pixel.setParentShape(Shape.this);
+            
+            cuatro_vecinos(x, y+1);
+            cuatro_vecinos(x+1, y);
+            cuatro_vecinos(x, y-1);
+            cuatro_vecinos(x-1, y);
+        }
+    }
+    
+    protected void generatePixels() {
+        pointsBorder.forEach((point)->{
             int x = (int) point.getX();
             int y = (int) point.getY();
             int mX = Constants.LX / 2;
             int mY = Constants.LY / 2;
             Pixel pixel = new Pixel(x+mX, -y+mY, Constants.GRID_SCALE);
             pixel.setParentShape(Shape.this);
-            pixels.add(pixel);
+            pixelsBorder.add(pixel);
         });
     }
   
     public void select () {
-        pixels.forEach((pixel)->pixel.select());    
+        pixelsBorder.forEach((pixel)->pixel.select());    
     }
 }

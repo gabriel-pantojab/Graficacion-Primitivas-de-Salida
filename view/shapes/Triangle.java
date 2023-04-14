@@ -18,12 +18,18 @@ public class Triangle extends Shape{
         this.vertexB = vertexB;
         this.vertexC = vertexC;
         this.algorithm = algorithm;
-        ArrayList<Point> points = algorithm.generatePoints((int) vertexA.getX(), (int) vertexA.getY(), (int) vertexB.getX(),
+        pointsBorder = algorithm.generatePoints((int) vertexA.getX(), (int) vertexA.getY(), (int) vertexB.getX(),
         (int) vertexB.getY());
-        generatePixels(points);
+        generatePixels();
     }
     
     public Triangle(Point vertexA, Point vertexB, Point vertexC) {
         this(vertexA, vertexB, vertexC, new TriangleBresenham());
+    }
+    
+    public void fill () {
+        int x = (int)vertexB.getX();
+        int y = (int)vertexB.getY() - (int)(vertexB.getY() - vertexA.getY()) / 2;
+        cuatro_vecinos(x, y);
     }
 }

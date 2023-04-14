@@ -180,7 +180,10 @@ public class Plane extends JPanel implements LayoutManager
             Component c = parent.getComponent(i);
             if (c instanceof view.shapes.Shape) {
                 view.shapes.Shape cS = (view.shapes.Shape)c;
-                cS.getPixels().forEach((p)->{
+                cS.getPixelsBorder().forEach((p)->{
+                    parent.add(p);
+                });
+                cS.getPixelsFill().forEach((p)->{
                     parent.add(p);
                 });
             }
