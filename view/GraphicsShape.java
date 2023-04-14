@@ -19,5 +19,10 @@ public abstract class GraphicsShape {
         this.color = color;
     }
     
+    public void setCenter (int x, int y) {
+        xc = x;
+        yc = y;
+    }
+    
     public abstract void paint (Graphics2D g);
 }
