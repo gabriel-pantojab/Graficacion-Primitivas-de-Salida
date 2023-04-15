@@ -21,6 +21,7 @@ public class ShapeMap {
         shapes.put("Line", new LineShape());
         shapes.put("Circle", new CircleShape());
         shapes.put("Square", new SquareShape());
+        shapes.put("Triangle", new TriangleShape());
     }
     
     public Object get (String name) {

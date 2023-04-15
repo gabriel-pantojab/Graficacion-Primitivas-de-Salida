@@ -14,5 +14,5 @@ public abstract class TriangleAlgorithm extends Algorithm {
         super(title);
     }
     
-    public abstract ArrayList<Point> generatePoints (int xV1, int yV1, int xV2, int yV2);
+    public abstract ArrayList<Point> generatePoints (int xV1, int yV1, int xV2, int yV2, int xV3, int yV3);
 }

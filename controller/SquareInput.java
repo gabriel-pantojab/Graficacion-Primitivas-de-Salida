@@ -42,7 +42,6 @@ public class SquareInput extends InputShape {
             int width = (int)bottomRightVertex.getX() - (int)topLeftVertex.getX();
             int height = (int)topLeftVertex.getY() - (int)bottomRightVertex.getY();
             return new GraphicSquare(0, 0, Color.RED, (int)topLeftVertex.getX(), (int)topLeftVertex.getY(), width, height);
-            //return new GraphicLine(0, 0, Color.RED, (int)topLeftVertex.getX(), (int)topLeftVertex.getY(), (int)bottomRightVertex.getX(), (int)bottomRightVertex.getY());
         }
         return null;
     }

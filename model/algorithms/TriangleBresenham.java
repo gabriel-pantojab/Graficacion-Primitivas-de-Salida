@@ -14,10 +14,7 @@ public class TriangleBresenham extends TriangleAlgorithm {
         super("Triangle Bresenham");
     }
     
-    public ArrayList<Point> generatePoints (int xV1, int yV1, int xV2, int yV2){
-        int xV3, yV3;
-        xV3 = xV1 + 2*Math.abs(xV2 - xV1);
-        yV3 = yV1;
+    public ArrayList<Point> generatePoints (int xV1, int yV1, int xV2, int yV2, int xV3, int yV3){
         ArrayList<Point> points = new ArrayList<Point>();
         LineBresenham alg = new LineBresenham();
         ArrayList<Point> lado1, lado2, lado3;

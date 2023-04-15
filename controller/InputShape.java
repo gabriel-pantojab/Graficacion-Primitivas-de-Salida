@@ -17,7 +17,9 @@ public abstract class InputShape {
     protected ArrayList<Point> inputs;
     protected GraphicsShape graphic;
     protected Shape shape;
+    protected int minCantPoints;
     public InputShape () {
+        minCantPoints = 1;
         inputs = new ArrayList<Point>();
     }
     
@@ -30,6 +32,10 @@ public abstract class InputShape {
     public abstract boolean complete ();
     
     public abstract boolean readyDraw ();
+    
+    public int minCantPoints () {
+        return minCantPoints;
+    }
     
     public void popInput () {
         int i = inputs.size();

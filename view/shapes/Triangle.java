@@ -19,7 +19,8 @@ public class Triangle extends Shape{
         this.vertexC = vertexC;
         this.algorithm = algorithm;
         pointsBorder = algorithm.generatePoints((int) vertexA.getX(), (int) vertexA.getY(), (int) vertexB.getX(),
-        (int) vertexB.getY());
+        (int) vertexB.getY(), (int) vertexC.getX(),
+        (int) vertexC.getY());
         generatePixels();
     }
     
