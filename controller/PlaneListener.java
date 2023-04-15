@@ -47,6 +47,11 @@ public class PlaneListener extends MouseAdapter {
         int x = (e.getX()/view.Constants.GRID_SCALE) - (view.Constants.LX/2);
         int y = -(e.getY()/view.Constants.GRID_SCALE-view.Constants.LY/2);
         //System.out.println(x+" "+y);
+        if (app.getPlane().getCurrentShape() != null) {
+            app.getPlane().getCurrentShape().unselect();
+            app.getPlane().setCurrentShape(null); 
+        }
+        
         if(inputShape == null) {
             if (app.getModelShape() instanceof model.LineShape) {
                 inputShape = new LineInput();
@@ -69,6 +74,7 @@ public class PlaneListener extends MouseAdapter {
             app.runAlgorithm();
             plane.repaint();
             inputShape = null;
+            plane.setGraphic(null);
         }
     }
     

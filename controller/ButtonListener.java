@@ -11,27 +11,25 @@ import javax.swing.JButton;
  */
 public class ButtonListener implements ActionListener {
     private view.App app;
-    private JButton next, back, run;
+    private JButton delete, clear;
     public ButtonListener (view.App app) {
         this.app = app;
-        next = this.app.getCrtAnimation().next();
-        back = this.app.getCrtAnimation().back();
-        run = this.app.getCrtAnimation().run();
+        clear = this.app.getCrtAnimation().clear();
+        delete = this.app.getCrtAnimation().delete();
         
-        next.addActionListener(this);
-        back.addActionListener(this);
-        run.addActionListener(this);
+        delete.addActionListener(this);
+        clear.addActionListener(this);
     }
     
     @Override
     public void actionPerformed (ActionEvent e) {
         Object s = e.getSource();
-        if (s.equals(next)) {
-            app.getPlane().pushPixel();
-        } else if (s.equals(back)) {
-            app.getPlane().removePixel();
-        } else if (s.equals(run)) {
-            app.getPlane().run();
+        if (s.equals(delete)) {
+            app.getPlane().removeCurrentShape();
+            app.getPlane().updateUI();
+        } else if (s.equals(clear)) {
+            app.getPlane().removeAll();
+            app.getPlane().updateUI();
         }
     }
 }

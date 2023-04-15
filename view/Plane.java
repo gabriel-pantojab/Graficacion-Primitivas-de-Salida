@@ -17,6 +17,8 @@ public class Plane extends JPanel implements LayoutManager
     private GraphicsShape graphic;
     private int indexPixel;
     
+    private view.shapes.Shape currentShape;
+    
     public Plane () {
         setLayout(this);
         indexPixel = 0;
@@ -26,6 +28,21 @@ public class Plane extends JPanel implements LayoutManager
         crearGrilla();
         setPreferredSize(new Dimension(GRID_SCALE*LX+1, GRID_SCALE*LY+1));
         setBackground(new Color(250, 250, 250));
+    }
+    
+    public void setCurrentShape (view.shapes.Shape s) {
+        if (currentShape != null) currentShape.unselect(); 
+        currentShape = s;
+    }
+    
+    public view.shapes.Shape getCurrentShape () {
+        return currentShape;
+    }
+    
+    public void removeCurrentShape () {
+        if (currentShape != null) {
+            remove(currentShape);
+        }
     }
     
     public void clearPoints () {
@@ -60,7 +77,7 @@ public class Plane extends JPanel implements LayoutManager
         g.setColor(Color.BLACK);
         g.drawLine(0, centroY, getWidth(), centroY);
         g.drawLine(centroX, 0, centroX, getHeight());
-        pixeles.forEach((pixel) -> pixel.paintFill(g));
+        //pixeles.forEach((pixel) -> pixel.paintFill(g));
         pixelesOrigen.forEach((pixel) -> pixel.paintFill(g));
         if (graphic != null) graphic.paint((Graphics2D)g);
     }
@@ -161,6 +178,17 @@ public class Plane extends JPanel implements LayoutManager
 
     @Override
     public void removeLayoutComponent(Component comp) {
+        Container parent = comp.getParent();
+        if (comp instanceof view.shapes.Shape) {
+            view.shapes.Shape cS = (view.shapes.Shape)comp;
+            cS.getPixelsBorder().forEach((pixel)->{
+                parent.remove(pixel);
+            });
+            cS.getPixelsFill().forEach((pixel)->{
+                parent.remove(pixel);
+            });
+            System.out.println(parent.getComponentCount());
+        }
     }
 
     @Override

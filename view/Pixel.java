@@ -79,7 +79,11 @@ public class Pixel extends JComponent implements MouseListener{
     
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(parentShape != null) parentShape.select();
+        if(parentShape != null) {
+            parentShape.select();
+            Plane p = (Plane)getParent();
+            p.setCurrentShape(parentShape);
+        }
     }
 
     @Override

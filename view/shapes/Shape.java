@@ -65,4 +65,8 @@ public abstract class Shape extends JComponent {
     public void select () {
         pixelsBorder.forEach((pixel)->pixel.select());    
     }
+    
+    public void unselect () {
+        pixelsBorder.forEach((pixel)->pixel.unselect());
+    }
 }

@@ -10,28 +10,22 @@ import java.awt.*;
  * @version (a version number or a date)
  */
 public class ControlsAnimation extends JPanel {
-    private JButton next, back, run;
+    private JButton clear, delete;
     public ControlsAnimation () {
         setPreferredSize(new Dimension(0, 40));
         
-        next = new JButton("\u27A1");
-        back = new JButton("\u2B05");
-        run = new JButton("\u25B6");
-        
-        add(back);
-        add(next);
-        add(run);
+        delete = new JButton("Delete Current Shape");
+        clear = new JButton("Clear");
+
+        add(delete);
+        add(clear);
     }
     
-    public JButton next () {
-        return next;
+    public JButton clear () {
+        return clear;
     }
     
-    public JButton back () {
-        return back;
-    }
-    
-    public JButton run () {
-        return run;
+    public JButton delete () {
+        return delete;
     }
 }
