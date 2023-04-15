@@ -14,8 +14,8 @@ public class CircleShape extends Shape
     public CircleShape () {
         super("Algorithms of the Circle");
         algorithms = new ArrayList<model.algorithms.CircleAlgorithm>();
-        algorithms.add(new model.algorithms.CircleBasic());
-        algorithms.add(new model.algorithms.CircleBresenham());
+        //algorithms.add(new model.algorithms.CircleBasic());
+        //algorithms.add(new model.algorithms.CircleBresenham());
         algorithms.add(new model.algorithms.CircleMidPoint());
     }
     

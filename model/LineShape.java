@@ -17,7 +17,7 @@ public class LineShape extends Shape
         algorithms.add(new model.algorithms.LineBasic());
         algorithms.add(new model.algorithms.LineBresenham());
         algorithms.add(new model.algorithms.LineMidPoint());
-        algorithms.add(new model.algorithms.DDA());
+        //algorithms.add(new model.algorithms.DDA());
     }
     
     public ArrayList<? extends model.algorithms.Algorithm> getAlgorithms () {

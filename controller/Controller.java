@@ -48,8 +48,8 @@ public class Controller {
         app.setTitle(app.getModelShape().getTitle());
         header.getOpAlgorithm().setOptionsAlgorithms(header.optionsNameAlgorithms(app.getModelShape().getAlgorithms()));
         header.setShape(app.getModelShape());
-        ArrayList<JTextField> inputs = header.getInput().getInputs();
-        inputL.setInputs(inputs);
+        //ArrayList<JTextField> inputs = header.getInput().getInputs();
+        //inputL.setInputs(inputs);
         optionAlgorithmL.setAlgorithmMap(new model.AlgorithmMap(app.getModelShape()));
         plane.setGraphic(null);
         plane.clearPoints();
@@ -57,7 +57,7 @@ public class Controller {
     
     public void updateAlgorithm (model.algorithms.Algorithm alg) {
         app.setAlgorithm(alg);
-        header.setTitleAlgorithm(app.getAlgorithm().getTitle());
+        //header.setTitleAlgorithm(app.getAlgorithm().getTitle());
         plane.clearPoints();
         //TODO: volver a revisar
         //if (!inputL.emptyInputs()) app.runAlgorithm();

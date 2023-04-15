@@ -20,6 +20,7 @@ public class ShapeMap {
     public void create () {
         shapes.put("Line", new LineShape());
         shapes.put("Circle", new CircleShape());
+        shapes.put("Square", new SquareShape());
     }
     
     public Object get (String name) {

@@ -57,8 +57,11 @@ public class PlaneListener extends MouseAdapter {
                 inputShape = new LineInput();
             } else if (app.getModelShape() instanceof model.CircleShape) {
                 inputShape = new CircleInput();
-            } 
+            } else if (app.getModelShape() instanceof model.SquareShape) {
+                inputShape = new SquareInput();
+            }
         }
+        
         inputShape.addInput(new Point(x, y));
         if(inputShape.readyDraw()) {
             Point p = inputShape.firtsInput();

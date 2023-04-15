@@ -18,7 +18,7 @@ public class Header extends JPanel{
         setLayout(new GridLayout(2, 1));
         containerO = new JPanel(new GridLayout(1, 2));
         //revisar
-        String[] s = {"Line", "Circle"};
+        String[] s = {"Line", "Circle", "Square"};
         
         oA = new OptionsAlgorithm(s, optionsNameAlgorithms(shape.getAlgorithms()));
         input = getInput(shape);

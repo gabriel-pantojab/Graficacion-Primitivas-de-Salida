@@ -11,7 +11,7 @@ import java.awt.Point;
  */
 public class SquareMidPoint extends SquareAlgorithm {
     public SquareMidPoint() {
-        super("MidPoint");
+        super("MidPoint Square");
     }
     public ArrayList<Point> generatePoints (int xTL, int yTL, int xBR, int yBR) {
         int xTR, yTR, xBL, yBL;
