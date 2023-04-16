@@ -70,7 +70,7 @@ public class Plane extends JPanel implements LayoutManager
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        paintGrilla(g);
+        //paintGrilla(g);
         int centroX = getWidth() / 2;
         int centroY = getHeight() / 2;
         

@@ -43,7 +43,7 @@ public class App extends JFrame {
         //1267x696
         setBounds(0, 0, w, h);
         setLocationRelativeTo(null);
-        setResizable(false);
+        //setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
