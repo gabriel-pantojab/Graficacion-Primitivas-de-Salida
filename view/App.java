@@ -38,12 +38,12 @@ public class App extends JFrame {
         add(new Border(), BorderLayout.EAST);
         add(new OptionsAttributes(), BorderLayout.WEST);
         
-        int w = (Constants.LX*Constants.GRID_SCALE+1) + 2*40 + 10+10 + (16);
+        int w = (Constants.LX*Constants.GRID_SCALE+1) + 40+200 + 10+10 + (16);
         int h = (Constants.LY*Constants.GRID_SCALE+1) + 66 + (10+10) + 40 + 39;
         //1267x696
         setBounds(0, 0, w, h);
         setLocationRelativeTo(null);
-        //setResizable(false);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
