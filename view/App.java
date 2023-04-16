@@ -36,7 +36,7 @@ public class App extends JFrame {
         add(plane, BorderLayout.CENTER);
         add(crtAnimation, BorderLayout.SOUTH);
         add(new Border(), BorderLayout.EAST);
-        add(new Border(), BorderLayout.WEST);
+        add(new OptionsAttributes(), BorderLayout.WEST);
         
         int w = (Constants.LX*Constants.GRID_SCALE+1) + 2*40 + 10+10 + (16);
         int h = (Constants.LY*Constants.GRID_SCALE+1) + 66 + (10+10) + 40 + 39;
