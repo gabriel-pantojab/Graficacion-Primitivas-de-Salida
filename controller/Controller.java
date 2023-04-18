@@ -19,10 +19,14 @@ public class Controller {
     private OptionAlgorithm optionAlgorithmL;
     private ButtonListener buttonsL;
     private PlaneListener planeL;
+    
+    private ControllerAttributes ctrAttributes;
     public Controller (view.App app) {
         this.app = app;
+        
         header = this.app.getHeader();
         plane = this.app.getPlane();
+        ctrAttributes = new ControllerAttributes(plane, this.app.getOpsAttributes());
         ArrayList<JTextField> inputs = header.getInput().getInputs();
         inputL = new InputListener(inputs, this.app);
         buttonsL = new ButtonListener(this.app);

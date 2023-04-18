@@ -191,4 +191,9 @@ public class OptionsAttributes extends JPanel{
         
         directionsPanel.add(boxDP);
     }
+    
+    //**************************************************************
+    public JCheckBox getFillCheck () {
+        return fill;
+    }
 }

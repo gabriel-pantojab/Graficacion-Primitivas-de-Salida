@@ -20,6 +20,7 @@ public class App extends JFrame {
     private Plane plane;
     private Header header;
     private ControlsAnimation crtAnimation;
+    private OptionsAttributes opsAttributes;
 
     public App () {
         super("Algoritmos de la Recta");
@@ -31,12 +32,13 @@ public class App extends JFrame {
         header = new Header(algorithm.getTitle(), shape);
         plane = new Plane();
         crtAnimation = new ControlsAnimation();
+        opsAttributes = new OptionsAttributes();
         
         add(header, BorderLayout.NORTH);
         add(plane, BorderLayout.CENTER);
         add(crtAnimation, BorderLayout.SOUTH);
         add(new Border(), BorderLayout.EAST);
-        add(new OptionsAttributes(), BorderLayout.WEST);
+        add(opsAttributes, BorderLayout.WEST);
         
         int w = (Constants.LX*Constants.GRID_SCALE+1) + 40+200 + 10+10 + (16);
         int h = (Constants.LY*Constants.GRID_SCALE+1) + 66 + (10+10) + 40 + 39;
@@ -76,6 +78,10 @@ public class App extends JFrame {
     
     public void setAlgorithm (model.algorithms.Algorithm algorithm) {
         this.algorithm = algorithm;
+    }
+    
+    public OptionsAttributes getOpsAttributes () {
+        return opsAttributes;
     }
     
     public Plane getPlane () {
