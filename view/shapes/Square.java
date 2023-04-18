@@ -2,7 +2,7 @@ package view.shapes;
 import model.Punto;
 import java.util.ArrayList;
 
-import model.algorithms.SquareMidPunto;
+import model.algorithms.SquareMidPoint;
 import model.algorithms.SquareAlgorithm;
 
 /**
@@ -23,7 +23,7 @@ public class Square extends Shape{
     }
     
     public Square(Punto topLV, Punto bottomRV) {
-        this(topLV, bottomRV, new SquareMidPunto());
+        this(topLV, bottomRV, new SquareMidPoint());
     }
     
     public void fill () {
