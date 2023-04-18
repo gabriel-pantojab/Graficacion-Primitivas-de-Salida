@@ -2,6 +2,7 @@ package controller;
 import java.awt.event.*;
 import java.awt.*;
 import view.GraphicsShape;
+import model.Punto;
 
 /**
  * Write a description of class PlaneListener here.
@@ -34,7 +35,7 @@ public class PlaneListener extends MouseAdapter {
             }
             plane.pushPixelOrigen(x, y);
             if(inputShape.size() > inputShape.minCantPoints()) inputShape.popInput();
-            inputShape.addInput(new Point(x, y));
+            inputShape.addInput(new Punto(x, y));
             inputShape.setInputs();
             updateGraphicShape();
             plane.repaint();
@@ -65,7 +66,7 @@ public class PlaneListener extends MouseAdapter {
             }
         }
         
-        Point p = new Point(x, y);
+        Punto p = new Punto(x, y);
         inputShape.addInput(p);
         plane.pushPixelOrigen((int)p.getX(), (int)p.getY());
         

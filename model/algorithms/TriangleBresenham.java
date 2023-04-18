@@ -1,6 +1,6 @@
 package model.algorithms;
 import java.util.ArrayList;
-import java.awt.Point;
+import model.Punto;
 
 
 /**
@@ -14,10 +14,10 @@ public class TriangleBresenham extends TriangleAlgorithm {
         super("Triangle Bresenham");
     }
     
-    public ArrayList<Point> generatePoints (int xV1, int yV1, int xV2, int yV2, int xV3, int yV3){
-        ArrayList<Point> points = new ArrayList<Point>();
+    public ArrayList<Punto> generatePoints (int xV1, int yV1, int xV2, int yV2, int xV3, int yV3){
+        ArrayList<Punto> points = new ArrayList<Punto>();
         LineBresenham alg = new LineBresenham();
-        ArrayList<Point> lado1, lado2, lado3;
+        ArrayList<Punto> lado1, lado2, lado3;
         lado1 = alg.generatePoints(xV1, yV1, xV2, yV2);
         lado2 = alg.generatePoints(xV2, yV2, xV3, yV3);
         lado3 = alg.generatePoints(xV3, yV3, xV1, yV1);

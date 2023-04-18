@@ -1,5 +1,5 @@
 package controller;
-import java.awt.Point;
+import model.Punto;
 import java.awt.Color;
 import view.GraphicSquare;
 import view.GraphicLine;
@@ -15,7 +15,7 @@ import view.shapes.Square;
  * @version (a version number or a date)
  */
 public class SquareInput extends InputShape {
-    private Point topLeftVertex, bottomRightVertex;
+    private Punto topLeftVertex, bottomRightVertex;
     
     public void setInputs () {
         if(complete()) {

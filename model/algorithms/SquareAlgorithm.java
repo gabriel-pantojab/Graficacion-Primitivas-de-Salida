@@ -1,6 +1,6 @@
 package model.algorithms;
 import java.util.ArrayList;
-import java.awt.Point;
+import model.Punto;
 
 
 /**
@@ -14,5 +14,5 @@ public abstract class SquareAlgorithm extends Algorithm {
         super(title);
     }
     
-    public abstract ArrayList<Point> generatePoints (int xTL, int yTL, int xBR, int yBR);
+    public abstract ArrayList<Punto> generatePoints (int xTL, int yTL, int xBR, int yBR);
 }

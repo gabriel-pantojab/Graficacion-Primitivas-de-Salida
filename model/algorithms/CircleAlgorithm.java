@@ -1,6 +1,6 @@
 package model.algorithms;
 import java.util.ArrayList;
-import java.awt.Point;
+import model.Punto;
 
 
 /**
@@ -15,5 +15,5 @@ public abstract class CircleAlgorithm extends Algorithm
         super(title);
     }
     
-    public abstract ArrayList<Point> generatePoints (int xC, int yC, int radio);
+    public abstract ArrayList<Punto> generatePoints (int xC, int yC, int radio);
 }

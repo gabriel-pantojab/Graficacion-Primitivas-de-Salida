@@ -1,21 +1,20 @@
 package model.algorithms;
 import java.util.ArrayList;
-import java.awt.Point;
+import model.Punto;
 
 
 /**
- * Write a description of class LineMidPoint here.
+ * Write a description of class LineMidPunto here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class LineMidPoint extends LineAlgorithm
-{
+public class LineMidPoint extends LineAlgorithm {
     public LineMidPoint () {
-        super("Middle Point");
+        super("Middle Punto");
     }
     
-    public ArrayList<Point> generatePoints(int xI, int yI, int xF, int yF) {
+    public ArrayList<Punto> generatePoints(int xI, int yI, int xF, int yF) {
         if(xI > xF) {
             int temp = xF;
             xF = xI;
@@ -26,7 +25,7 @@ public class LineMidPoint extends LineAlgorithm
             yF = yI;
             yI = temp;
         }
-        ArrayList<Point> points = new ArrayList<Point>();
+        ArrayList<Punto> points = new ArrayList<Punto>();
         int dx, dy, p, incInf, incSup;
         dx = xF - xI;
         dy = yF - yI;
@@ -42,7 +41,7 @@ public class LineMidPoint extends LineAlgorithm
             p = dy - 2 * dx;
         }
 
-        points.add(new Point(x, y));
+        points.add(new Punto(x, y));
         pValues.add(p);
         if (dx > dy) {
             while (x != xF) {
@@ -53,7 +52,7 @@ public class LineMidPoint extends LineAlgorithm
                     p = p + incSup;
                     y = y + 1;
                 }
-                points.add(new Point(x, y));
+                points.add(new Punto(x, y));
                 pValues.add(p);
             }
         } else {
@@ -65,7 +64,7 @@ public class LineMidPoint extends LineAlgorithm
                 } else {
                     p = p + incInf;
                 }
-                points.add(new Point(x, y));
+                points.add(new Punto(x, y));
                 pValues.add(p);
             }
         }

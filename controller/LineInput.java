@@ -1,5 +1,5 @@
 package controller;
-import java.awt.Point;
+import model.Punto;
 import java.awt.Color;
 import view.GraphicLine;
 import view.GraphicsShape;
@@ -13,7 +13,7 @@ import view.shapes.Line;
  * @version (a version number or a date)
  */
 public class LineInput extends InputShape {
-    private Point start, end;
+    private Punto start, end;
     
     public void setInputs () {
         if(complete()) {

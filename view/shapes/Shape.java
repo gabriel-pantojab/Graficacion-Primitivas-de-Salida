@@ -1,6 +1,6 @@
 package view.shapes;
 
-import java.awt.Point;
+import model.Punto;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
@@ -13,12 +13,12 @@ import view.Pixel;
 
 public abstract class Shape extends JComponent {
     protected ArrayList<Pixel> pixelsBorder, pixelsFill;
-    protected ArrayList<Point> pointsBorder, pointsFill;
+    protected ArrayList<Punto> pointsBorder, pointsFill;
     protected Algorithm algorithm;
 
     public Shape() {
-        pointsBorder = new ArrayList<Point>();
-        pointsFill = new ArrayList<Point>();
+        pointsBorder = new ArrayList<Punto>();
+        pointsFill = new ArrayList<Punto>();
         pixelsBorder = new ArrayList<Pixel>();
         pixelsFill = new ArrayList<Pixel>();
     }
@@ -34,7 +34,7 @@ public abstract class Shape extends JComponent {
     public abstract void fill ();
     
     protected void cuatro_vecinos(int x, int y) {
-        Point p = new Point(x, y);
+        Punto p = new Punto(x, y);
         if (!pointsBorder.contains(p) && !pointsFill.contains(p)) {
             pointsFill.add(p);
             int mX = Constants.LX / 2;

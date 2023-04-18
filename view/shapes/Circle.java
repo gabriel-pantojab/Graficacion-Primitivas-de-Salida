@@ -1,22 +1,22 @@
 package view.shapes;
 
-import java.awt.Point;
+import model.Punto;
 import java.util.ArrayList;
 
 import model.algorithms.CircleAlgorithm;
-import model.algorithms.CircleMidPoint;
+import model.algorithms.CircleMidPunto;
 
 public class Circle extends Shape {
-    private Point center;
-    public Circle(Point center, int radio, CircleAlgorithm algorithm) {
+    private Punto center;
+    public Circle(Punto center, int radio, CircleAlgorithm algorithm) {
         this.center = center;
         this.algorithm = algorithm;
         pointsBorder = algorithm.generatePoints((int) center.getX(), (int) center.getY(), radio);
         generatePixels();
     }
     
-    public Circle(Point center, int radio) {  
-        this(center, radio, new CircleMidPoint());
+    public Circle(Punto center, int radio) {  
+        this(center, radio, new CircleMidPunto());
     }
     
     public void fill () {

@@ -1,5 +1,5 @@
 package controller;
-import java.awt.Point;
+import model.Punto;
 import java.awt.Color;
 import view.GraphicCircle;
 import view.GraphicsShape;
@@ -7,7 +7,7 @@ import view.shapes.Shape;
 import view.shapes.Circle;
 
 public class CircleInput extends InputShape {
-    private Point center;
+    private Punto center;
     private Integer radio;
     
     public void setInputs () {

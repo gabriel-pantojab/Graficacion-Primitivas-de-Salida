@@ -1,8 +1,8 @@
 package view.shapes;
-import java.awt.Point;
+import model.Punto;
 import java.util.ArrayList;
 
-import model.algorithms.SquareMidPoint;
+import model.algorithms.SquareMidPunto;
 import model.algorithms.SquareAlgorithm;
 
 /**
@@ -12,8 +12,8 @@ import model.algorithms.SquareAlgorithm;
  * @version (a version number or a date)
  */
 public class Square extends Shape{
-    private Point topLeftVertex, bottomRightVertex;
-    public Square(Point topLV, Point bottomRV, SquareAlgorithm algorithm) {
+    private Punto topLeftVertex, bottomRightVertex;
+    public Square(Punto topLV, Punto bottomRV, SquareAlgorithm algorithm) {
         this.topLeftVertex = topLV;
         this.bottomRightVertex = bottomRV;
         this.algorithm = algorithm;
@@ -22,8 +22,8 @@ public class Square extends Shape{
         generatePixels();
     }
     
-    public Square(Point topLV, Point bottomRV) {
-        this(topLV, bottomRV, new SquareMidPoint());
+    public Square(Punto topLV, Punto bottomRV) {
+        this(topLV, bottomRV, new SquareMidPunto());
     }
     
     public void fill () {

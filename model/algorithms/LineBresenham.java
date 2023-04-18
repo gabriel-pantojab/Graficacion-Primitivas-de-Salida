@@ -1,6 +1,6 @@
 package model.algorithms;
 import java.util.ArrayList;
-import java.awt.Point;
+import model.Punto;
 
 
 /**
@@ -15,8 +15,8 @@ public class LineBresenham extends LineAlgorithm
         super("Bresenham");
     }
     
-    public ArrayList<Point> generatePoints(int xI, int yI, int xF, int yF) {
-        ArrayList<Point> points = new ArrayList<Point>();
+    public ArrayList<Punto> generatePoints(int xI, int yI, int xF, int yF) {
+        ArrayList<Punto> points = new ArrayList<Punto>();
         int x, y, dx, dy, p, incE, incNE, stepx, stepy;
         dx = (xF - xI);
         dy = (yF - yI);
@@ -32,7 +32,7 @@ public class LineBresenham extends LineAlgorithm
             stepx = 1;
         x = xI;
         y = yI;
-        points.add(new Point(x, y));
+        points.add(new Punto(x, y));
         
         if(dx>dy){
             p = 2*dy - dx;
@@ -48,7 +48,7 @@ public class LineBresenham extends LineAlgorithm
                     y = y + stepy;
                     p = p + incNE;
                 }
-                points.add(new Point(x, y));
+                points.add(new Punto(x, y));
                 pValues.add(p);
             }
         }
@@ -66,7 +66,7 @@ public class LineBresenham extends LineAlgorithm
                     x = x + stepx;
                     p = p + incNE;
                 }
-                points.add(new Point(x, y));
+                points.add(new Punto(x, y));
                 pValues.add(p);
             }
         }

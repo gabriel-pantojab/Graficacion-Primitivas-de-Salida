@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import view.GraphicsShape;
 import view.shapes.Shape;
 
-import java.awt.Point;
+import model.Punto;
 
 /**
  * Write a description of interface InputShape here.
@@ -14,13 +14,13 @@ import java.awt.Point;
  * @version (a version number or a date)
  */
 public abstract class InputShape {
-    protected ArrayList<Point> inputs;
+    protected ArrayList<Punto> inputs;
     protected GraphicsShape graphic;
     protected Shape shape;
     protected int minCantPoints;
     public InputShape () {
         minCantPoints = 1;
-        inputs = new ArrayList<Point>();
+        inputs = new ArrayList<Punto>();
     }
     
     public abstract Shape getShape ();
@@ -42,7 +42,7 @@ public abstract class InputShape {
         inputs.remove(i-1);
     }
     
-    public Point firtsInput () {
+    public Punto firtsInput () {
         return inputs.get(0);
     }
     
@@ -51,10 +51,10 @@ public abstract class InputShape {
     }
     
     public void clearInputs () {
-        inputs = new ArrayList<Point>();
+        inputs = new ArrayList<Punto>();
     }
 
-    public void addInput(Point point) {
+    public void addInput(Punto point) {
         if(!complete()) inputs.add(point);
     }
 }

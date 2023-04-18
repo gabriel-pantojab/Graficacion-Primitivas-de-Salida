@@ -1,6 +1,6 @@
 package model.algorithms;
 import java.util.ArrayList;
-import java.awt.Point;
+import model.Punto;
 
 
 /**
@@ -15,5 +15,5 @@ public abstract class LineAlgorithm extends Algorithm
         super(title);
     }
     
-    public abstract ArrayList<Point> generatePoints (int xI, int yI, int xF, int yF);
+    public abstract ArrayList<Punto> generatePoints (int xI, int yI, int xF, int yF);
 }

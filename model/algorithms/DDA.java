@@ -1,6 +1,6 @@
 package model.algorithms;
 import java.util.ArrayList;
-import java.awt.Point;
+import model.Punto;
 
 
 /**
@@ -21,7 +21,7 @@ public class DDA extends LineAlgorithm
         super("DDA");
     }
     
-    public ArrayList<Point> generatePoints(int xI, int yI, int xF, int yF) {
+    public ArrayList<Punto> generatePoints(int xI, int yI, int xF, int yF) {
         return null;
     }
 }
